@@ -1,0 +1,69 @@
+
+int yellow =2;
+int orange =3;
+int blue =4;
+int red =5;
+
+int buton2=6;
+int buton1=7;
+
+int buton2Durumu=0;
+int buton1Durumu=0;
+
+
+void setup(){
+  
+  pinMode(yellow,OUTPUT);
+  pinMode(orange,OUTPUT);
+  pinMode(blue,OUTPUT);
+  pinMode(red,OUTPUT);
+
+  pinMode(buton2,INPUT);
+  pinMode(buton1,INPUT);
+  
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  if(digitalRead(buton2) == 1 && buton2Durumu==0){
+  	buton1Durumu=0;
+    buton2Durumu=1;
+  }
+  if(digitalRead(buton1) == 1 && (buton1Durumu==0)){
+    buton1Durumu=1;
+    buton2Durumu=0;
+  }
+  
+  if(buton2Durumu == 1){
+    set();
+  }
+  else if(buton1Durumu == 1){
+    reset();
+  }
+
+}
+
+void set(){
+  digitalWrite(yellow,HIGH);
+  delay(1000);
+  digitalWrite(yellow,LOW);
+  digitalWrite(orange,HIGH);
+  delay(1000);
+  digitalWrite(orange,LOW);
+  digitalWrite(blue,HIGH);
+  delay(1000);
+  digitalWrite(blue,LOW);
+  digitalWrite(red,HIGH);
+  delay(1000);
+  digitalWrite(red,LOW);
+}
+
+void reset(){
+  digitalWrite(yellow,LOW);
+  digitalWrite(orange,LOW);
+  digitalWrite(blue,LOW);
+  digitalWrite(red,LOW);
+}
+
+
